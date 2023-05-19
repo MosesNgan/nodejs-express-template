@@ -52,6 +52,16 @@ Running in production:
 yarn start
 ```
 
+Linting:
+
+```bash
+# run ESLint
+yarn lint
+
+# fix ESLint errors
+yarn lint:fix
+```
+
 
 ## Framework
 
@@ -85,7 +95,13 @@ yarn start
 
 ## Linting
 
-[Describe the linting setup and rules]
+Linting is done using [ESLint](https://eslint.org/).
+
+In this app, ESLint is configured to follow the [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb-base) with some modifications.
+
+To modify the ESLint configuration, update the `.eslintrc.json` file.
+
+To prevent a certain file or directory from being linted, add it to `.eslintignore` file.
 
 ## Docker
 

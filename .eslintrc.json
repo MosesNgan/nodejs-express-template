@@ -1,0 +1,7 @@
+{
+  "extends": "airbnb-base",
+  "plugins": ["import"],
+  "rules": {
+    "new-cap": ["error", { "newIsCap": false }]
+  }
+}
