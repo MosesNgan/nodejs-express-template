@@ -18,6 +18,7 @@ These features are included in this template and provide specific libraries or f
 - **[Docker](#docker)**: Includes Docker configuration to containerize your application for easy deployment and scalability.
 - **[Cache](#cache)**: Integrates Redis as a caching solution to optimize performance and reduce database load.
 - **[Testing](#testing)**: Utilizes Jest as the testing framework to ensure code quality and reliability through unit and integration tests.
+- **[Environment Variables](#environment-variables)**: Configures environment variables using `dotenv` for easy management of configuration settings.
 
 ## Recommendations
 
@@ -62,10 +63,18 @@ yarn lint
 yarn lint:fix
 ```
 
-
 ## Framework
 
 [Specify the framework used in the boilerplate]
+
+## Environment Variables
+
+The environment variables can be found and modified in the `.env` file. They come with these default values:
+
+```bash
+
+PORT=3000
+```
 
 ## Architecture
 ### MVC
