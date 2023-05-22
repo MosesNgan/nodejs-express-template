@@ -5,7 +5,7 @@
 ## Table of Contents
 - [Features](#features)
 - [Recommendations](#recommendations)
-- [Commands](#commands)
+- [Commands](#❯-commands)
 
 ## Features
 
@@ -40,28 +40,25 @@ These sections provide guidelines and recommendations that are not directly impl
 - **[Hosting](#hosting)**: Consider hosting options like Kubernetes (K8s), Amazon ECS, or Google App Engine based on your infrastructure needs.
 - **[Infrastructure as Code (IAC)](#infrastructure-as-code-iac)**: Include IaC code, Helm charts, or Kubernetes (K8s) configuration if applicable.
 
-## Commands
-Running locally:
+## ❯ Commands
+### Install
 
-```bash
-yarn dev
-```
+- Install all dependencies with `yarn install`
 
-Running in production:
+### Linting
 
-```bash
-yarn start
-```
+- Run code quality analysis using `yarn lint`
 
-Linting:
+### Running in dev mode
 
-```bash
-# run ESLint
-yarn lint
+- Run `yarn dev` to start nodemon with ts-node
+- The server address will be displayed to you as `http://0.0.0.0:3000` (or `PORT` you specified in `.env`)
 
-# fix ESLint errors
-yarn lint:fix
-```
+### Building the project and run it
+
+- Run `yarn build` to generated all JavaScript files from the TypeScript sources
+- To start the builded app located in `dist` use `yarn start`
+
 
 ## Framework
 
