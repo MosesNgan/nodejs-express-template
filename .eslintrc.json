@@ -1,7 +1,10 @@
 {
-  "extends": "airbnb-base",
-  "plugins": ["import"],
-  "rules": {
-    "new-cap": ["error", { "newIsCap": false }]
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "import"],
+  "extends": [
+    "airbnb-typescript/base"
+  ],
+  "parserOptions": {
+    "project": "./tsconfig.json"
   }
 }
