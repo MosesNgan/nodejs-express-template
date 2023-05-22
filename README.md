@@ -49,6 +49,10 @@ These sections provide guidelines and recommendations that are not directly impl
 
 - Run code quality analysis using `yarn lint`
 
+### Tests
+
+- Run tests using `yarn test`
+
 ### Running in dev mode
 
 - Run `yarn dev` to start nodemon with ts-node
