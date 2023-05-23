@@ -2,14 +2,14 @@
 
 `nodejs-express-template` is a template project for building Node.js and Express.js applications. It provides a solid foundation and integrates popular technologies, libraries, and frameworks to streamline your development process.
 
-## Table of Contents
-- [Features](#features)
-- [Recommendations](#recommendations)
+## ❯ Table of Contents
+- [Features](#❯-features)
+- [Recommendations](#❯-recommendations)
 - [Commands](#❯-commands)
 
-## Features
+## ❯ Features
 
-These features are included in this template and provide specific libraries or frameworks implemented in the code:
+These features are implemented in this template with specific libraries or frameworks:
 
 - **[Framework](#framework)**: Built on Express.js, a fast and minimalist web application framework for Node.js.
 - **[Package Manager](#package-manager)**: Utilizes Yarn as the package manager for efficient dependency management.
@@ -20,7 +20,7 @@ These features are included in this template and provide specific libraries or f
 - **[Testing](#testing)**: Utilizes Jest as the testing framework to ensure code quality and reliability through unit and integration tests.
 - **[Environment Variables](#environment-variables)**: Configures environment variables using `dotenv` for easy management of configuration settings.
 
-## Recommendations
+## ❯ Recommendations
 
 These sections provide guidelines and recommendations that are not directly implemented in the code, but we provide guidance on how to approach them:
 
@@ -115,7 +115,52 @@ To prevent a certain file or directory from being linted, add it to `.eslintigno
 
 ## Docker
 
-[Explain the Docker configuration and how to use it]
+### Install Docker
+
+Before you start, make sure you have a recent version of [Docker](https://docs.docker.com/engine/installation/) installed.
+
+### Build Docker image
+
+```shell
+docker build -t <your-image-name> .
+```
+
+### Run Docker image in container and map port
+
+The port which runs your application inside Docker container is either configured as `PORT` property in your `.env` configuration file or passed to Docker container via environment variable `PORT`. Default port is `3000`.
+
+#### Run image in detached mode
+
+```shell
+docker run -d -p <port-on-host>:<port-inside-docker-container> <your-image-name>
+```
+
+#### Run image in foreground mode
+
+```shell
+docker run -i -t -p <port-on-host>:<port-inside-docker-container> <your-image-name>
+```
+
+### Stop Docker container
+
+#### Detached mode
+
+```shell
+docker stop <container-id>
+```
+
+You can get a list of all running Docker container and its ids by following command
+
+```shell
+docker images
+```
+
+#### Foreground mode
+
+Go to console and press <kbd>Ctrl</kbd> + <kbd>C</kbd>
+
+
+
 
 ## Cache
 
