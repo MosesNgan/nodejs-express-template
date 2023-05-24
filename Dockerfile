@@ -13,8 +13,11 @@ RUN yarn install --production
 # Copy the rest of the application code to the working directory
 COPY . .
 
+# Build the TypeScript code
+RUN yarn build
+
 # Expose the port on which your application will run (replace 3000 with your desired port)
 EXPOSE 3000
 
 # Start the application
-CMD ["npm", "start"]
+CMD ["yarn", "start"]
