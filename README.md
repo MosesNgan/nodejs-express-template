@@ -17,7 +17,7 @@ These features are implemented in this template with specific libraries or frame
 - **[API Documentation](#api-documentation)**: Integrates OpenAPI to generate comprehensive API documentation for your endpoints.
 - **[Linting](#linting)**: Configured with ESLint to enforce code quality and maintain consistent coding standards.
 - **[Code Formatting](#code-formatting)**: Enforces consistent code style using Prettier.
-- **[Docker](#docker)**: Includes Docker configuration to containerize your application for easy deployment and scalability.
+- **[Docker](#docker)** & **[Docker Compose](#docker-compose)**: Includes Docker configuration to containerize your application for easy deployment and scalability.
 - **[Cache](#cache)**: Integrates Redis as a caching solution to optimize performance and reduce database load.
 - **[Testing](#testing)**: Utilizes Jest as the testing framework to ensure code quality and reliability through unit and integration tests.
 - **[Environment Variables](#environment-variables)**: Configures environment variables using `dotenv` for easy management of configuration settings.
@@ -72,8 +72,8 @@ These sections provide guidelines and recommendations that are not directly impl
 The environment variables can be found and modified in the `.env` file. They come with these default values:
 
 ```bash
-
 PORT=3000
+REDIS_URL=redis://localhost:6379
 ```
 
 ## Architecture
@@ -220,9 +220,75 @@ docker images
 
 Go to console and press <kbd>Ctrl</kbd> + <kbd>C</kbd>
 
+
+## Docker Compose
+
+To run the application and its dependencies using `docker-compose`, follow these steps:
+
+### Prerequisites
+
+Make sure you have Docker and Docker Compose installed on your machine. You can download and install them from the [Docker website](https://www.docker.com/products/docker-desktop).
+
+### Starting the Application with Docker Compose
+
+1. Open a terminal and navigate to the project root directory.
+
+2. Run the following command to start the application and its dependencies:
+
+   ```shell
+   docker-compose up
+   ```
+   This command will build the Docker image, start the containers, and display the logs in the terminal.
+
+3. Once the containers are up and running, you can access the application by opening your web browser and visiting http://localhost:3000.
+
+4. You can also access the Redis server by connecting to redis://localhost:6379.
+
+
+### Stopping the Application
+To stop the running containers gracefully, press <kbd>Ctrl</kbd> + <kbd>C</kbd> in the terminal where `docker-compose up` is running.
+
+If you want to remove the containers and associated resources, you can run the following command:
+
+```shel
+docker-compose down
+```
+This command will stop and remove the containers, networks, and volumes created by Docker Compose.
+
+Note: If you make any changes to the code or configuration files, you need to restart the containers using docker-compose up to apply the changes.
+
 ## Cache
 
-[Specify the cache mechanism used (e.g., Redis)]
+This template integrates Redis as a caching solution to optimize performance and reduce database load.
+
+To utilize the caching functionality, follow these steps:
+
+1. Make sure you have Redis installed and running on your local machine. If you don't have it installed, you can download and install it from the [Redis website](https://redis.io/download).
+
+2. Configure the Redis connection URL by updating the `.env` file. If your Redis instance is running on a different port or has a different URL, modify the `REDIS_URL` value accordingly.
+
+3. In your application code, you can use the `getFromCache` and `setToCache` functions from the `src/services/cache` module to interact with the Redis cache.
+
+   Here's an example of how to use these functions:
+
+   ```typescript
+   import { getFromCache, setToCache } from './services/cache';
+
+   // Retrieve a value from the cache
+   const value = await getFromCache('myKey');
+
+   if (value) {
+     console.log('Value from cache:', value);
+   } else {
+     // Set a value in the cache
+     await setToCache('myKey', 'myValue');
+     console.log('Value set in cache');
+   }
+   ```
+
+This caching mechanism helps reduce the load on your database and improves the performance of your application by serving frequently accessed data from the cache.
+
+Note: Remember to handle cache invalidation or expiration based on your application requirements.
 
 ## Authentication
 
