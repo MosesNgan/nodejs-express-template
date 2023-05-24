@@ -7,7 +7,7 @@ app.get('/', async (req: Request, res: Response) => {
   try {
     const value = await getFromCache('homePageMessage');
     const homePageMessage = 'Home page is working :)';
-    if ( value == homePageMessage) {
+    if (value == homePageMessage) {
       console.log('Retrieved data from Redis cache:', value);
       return res.send(value);
     } else {
