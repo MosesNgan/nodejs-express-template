@@ -24,12 +24,6 @@ async function getCache(): Promise<RedisClientType> {
     await redisClient.connect();
   }
 
-  redisClient.ping().then((result) => {
-    console.log('Redis connection successful:', result);
-  }).catch((error) => {
-    console.error('Redis connection error:', error);
-  });
-
   return redisClient;
 }
 
