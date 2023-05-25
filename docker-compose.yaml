@@ -5,10 +5,13 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
-      NODE_ENV: production
+      NODE_ENV: development
       REDIS_URL: redis://redis:6379
     ports:
       - 3000:3000
+    volumes:
+      - .:/app
+      - /app/node_modules
     links:
       - redis
   redis:
