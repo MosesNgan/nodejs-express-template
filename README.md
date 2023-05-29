@@ -3,6 +3,7 @@
 `nodejs-express-template` is a template project for building Node.js and Express.js applications. It provides a solid foundation and integrates popular technologies, libraries, and frameworks to streamline your development process.
 
 ## ❯ Table of Contents
+
 - [Features](#❯-features)
 - [Recommendations](#❯-recommendations)
 - [Commands](#❯-commands)
@@ -41,6 +42,7 @@ These sections provide guidelines and recommendations that are not directly impl
 - **[Infrastructure as Code (IAC)](#infrastructure-as-code-iac)**: Include IaC code, Helm charts, or Kubernetes (K8s) configuration if applicable.
 
 ## ❯ Commands
+
 ### Install
 
 - Install all dependencies with `yarn install`
@@ -63,7 +65,6 @@ These sections provide guidelines and recommendations that are not directly impl
 - Run `yarn build` to generated all JavaScript files from the TypeScript sources
 - To start the builded app located in `dist` use `yarn start`
 
-
 ## Framework
 
 [Specify the framework used in the boilerplate]
@@ -78,6 +79,7 @@ PORT=3000
 ```
 
 ## Architecture
+
 ### MVC
 
 ### MVVC
@@ -99,6 +101,7 @@ PORT=3000
 [Specify the package manager used in the project (e.g., Yarn)]
 
 ## Database and ORM
+
 [Specify the type of database used (SQL or NoSQL) and any relevant details]
 
 [Specify the ORM used for database integration]
@@ -158,9 +161,6 @@ docker images
 #### Foreground mode
 
 Go to console and press <kbd>Ctrl</kbd> + <kbd>C</kbd>
-
-
-
 
 ## Cache
 
