@@ -16,10 +16,12 @@ These features are implemented in this template with specific libraries or frame
 - **[Package Manager](#package-manager)**: Utilizes Yarn as the package manager for efficient dependency management.
 - **[API Documentation](#api-documentation)**: Integrates OpenAPI to generate comprehensive API documentation for your endpoints.
 - **[Linting](#linting)**: Configured with ESLint to enforce code quality and maintain consistent coding standards.
+- **[Code Formatting](#code-formatting)**: Enforces consistent code style using Prettier.
 - **[Docker](#docker)**: Includes Docker configuration to containerize your application for easy deployment and scalability.
 - **[Cache](#cache)**: Integrates Redis as a caching solution to optimize performance and reduce database load.
 - **[Testing](#testing)**: Utilizes Jest as the testing framework to ensure code quality and reliability through unit and integration tests.
 - **[Environment Variables](#environment-variables)**: Configures environment variables using `dotenv` for easy management of configuration settings.
+- **[Git Hooks with Husky](#git-hooks-with-husky)**: Uses Husky to set up Git hooks for automated tasks and pre-commit linting.
 
 ## ❯ Recommendations
 
@@ -46,10 +48,6 @@ These sections provide guidelines and recommendations that are not directly impl
 ### Install
 
 - Install all dependencies with `yarn install`
-
-### Linting
-
-- Run code quality analysis using `yarn lint`
 
 ### Tests
 
@@ -108,13 +106,73 @@ PORT=3000
 
 ## Linting
 
-Linting is done using [ESLint](https://eslint.org/).
+Linting is done using [ESLint](https://eslint.org/), a popular JavaScript linter.
 
-In this app, ESLint is configured to follow the [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb-base) with some modifications.
+In this app, ESLint is configured to follow the [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript/tree/master/packages/eslint-config-airbnb-base) with some modifications. The TypeScript support is provided by the `airbnb-typescript` configuration.
 
 To modify the ESLint configuration, update the `.eslintrc.json` file.
 
-To prevent a certain file or directory from being linted, add it to `.eslintignore` file.
+To prevent a certain file or directory from being linted, add it to the `.eslintignore` file.
+
+To run the ESLint analysis and check for code quality issues, use the following command:
+
+```shell
+yarn lint
+```
+
+This command will analyze all TypeScript files in the src directory and its subdirectories.
+
+To automatically fix ESLint errors and apply code formatting, use the following command:
+
+```shell
+yarn lint:fix
+```
+
+This will attempt to fix any fixable errors and enforce the ESLint rules in your codebase.
+
+Note that ESLint is also integrated with Prettier to ensure consistent code style. Prettier rules are applied alongside ESLint rules.
+
+## Code Formatting
+
+Code formatting is done using [Prettier](https://prettier.io/), an opinionated code formatter.
+
+In this app, Prettier is configured with the following settings in the `.prettierrc` file:
+
+```json
+{
+  "printWidth": 100,
+  "singleQuote": true,
+  "trailingComma": "all",
+  "arrowParens": "always",
+  "endOfLine": "auto"
+}
+```
+
+To format your codebase, run the following command:
+
+```shell
+yarn format
+```
+
+This will automatically format all the files in your project according to the Prettier configuration.
+
+To customize the Prettier configuration, you can modify the `.prettierrc` file.
+
+To ignore certain files or directories from being formatted by Prettier, add them to the `.prettierignore` file.
+
+Feel free to adjust the content or formatting according to your preferences.
+
+## Git Hooks with Husky
+
+This template utilizes [Husky](https://typicode.github.io/husky/) to set up Git hooks for automated tasks and pre-commit linting. Git hooks are scripts that are automatically executed before or after specific Git events, such as committing code.
+
+In this template, Husky is configured using the `husky` object in the `package.json` file. It allows you to define Git hooks as scripts directly in the `package.json`, making it convenient to manage and version control your Git hooks along with your project configuration.
+
+Husky is set up to run ESLint for code linting before each commit by configuring the `pre-commit` hook. This ensures that your code meets the defined coding standards and maintains consistent code quality.
+
+To modify the Husky configuration or add new hooks, update the `husky` object in the `package.json` file. You can define scripts for different Git hooks and specify the tasks or commands to be executed.
+
+For more information on Husky and how to customize Git hooks using the `husky` object, refer to the [Husky documentation](https://typicode.github.io/husky/).
 
 ## Docker
 
