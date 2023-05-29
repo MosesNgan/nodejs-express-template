@@ -11,11 +11,12 @@
     "lint": "eslint src/**/*.ts",
     "lint:fix": "eslint src/**/*.ts --fix",
     "format": "prettier --write .",
-    "test": "jest"
+    "test": "jest",
+    "prepare": "husky install"
   },
   "husky": {
     "hooks": {
-      "pre-commit": "yarn format && git add -A ."
+      "pre-commit": "yarn lint:fix && yarn format && git add -A ."
     }
   },
   "engines": {
