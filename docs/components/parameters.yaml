@@ -17,5 +17,5 @@ UserIdParam:
   name: id
   in: path
   schema:
-    $ref: "./schemas.yaml#/UUID"
+    $ref: './schemas.yaml#/UUID'
   required: true
