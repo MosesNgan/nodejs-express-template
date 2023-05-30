@@ -13,28 +13,25 @@ const cacheMiddleware = async (req: Request, res: Response, next: NextFunction) 
       console.log('Retrieved data from Redis cache:', cachedData);
       return res.send(cachedData);
     }
-
-    // If data is not found in cache, continue to the next middleware/route
-    return next();
   } catch (error) {
     console.error('Error accessing Redis cache:', error);
-    return res.status(500).send('Internal Server Error');
   }
+  // If data is not found in cache, continue to the next middleware/route
+  return next();
 };
 
 // Apply the cache middleware to specific routes
 app.get('/', cacheMiddleware, async (req: Request, res: Response) => {
-  try {
-    const homePageMessage = 'Home page is working :)';
+  const homePageMessage = 'Home page is working :)';
 
+  try {
     // If the control reaches here, it means the data is not found in cache
     await setToCache(req.originalUrl, homePageMessage);
     console.log('Set data in Redis cache:', homePageMessage);
-
-    return res.send(homePageMessage);
   } catch (error) {
     console.error('Error accessing Redis cache:', error);
-    return res.status(500).send('Internal Server Error');
+  } finally {
+    return res.send(homePageMessage);
   }
 });
 

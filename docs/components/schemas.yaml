@@ -6,7 +6,7 @@ UserListResponse:
       type: array
       maxItems: 100
       items:
-        $ref: "#/User"
+        $ref: '#/User'
     total_count:
       type: integer
       minimum: 0
@@ -16,25 +16,25 @@ UserResponse:
   title: UserResponse
   properties:
     user:
-      $ref: "#/User"
+      $ref: '#/User'
 User:
   type: object
   title: User
   properties:
     id:
-      $ref: "#/UUID"
+      $ref: '#/UUID'
     first_name:
       type: string
       maxLength: 50
-      example: "Alice"
+      example: 'Alice'
     last_name:
       type: string
       maxLength: 50
-      example: "Chan"
+      example: 'Chan'
     email:
       type: string
       format: email
-      example: "alice.chan@palo-it.com"
+      example: 'alice.chan@palo-it.com'
     hive:
       type: string
       enum:
@@ -44,7 +44,7 @@ User:
         - Tech
         - Sales
         - Other
-      example: "Agile"
+      example: 'Agile'
     level:
       type: number
       minimum: 1
