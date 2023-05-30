@@ -4,25 +4,57 @@
 
 ## ❯ Getting Started
 
-[Instruction to quickly start a new project with this template]
+To create a new Express project using this template, follow these steps:
 
-### Install
+1. Clone this repository to your local machine using the following command:
 
-- Install all dependencies with `yarn install`
+   ```shell
+   git clone <repository-url>
+   ```
+
+2. Rename the cloned repository to your desired project name:
+   ```shell
+   mv <template-project-name> <your-project-name>
+   ```
+3. Navigate to the project directory:
+   ```shell
+   cd <new-project-name>
+   ```
+4. Install all project dependencies using the following command:
+   ```shell
+   yarn install
+   ```
+5. Customize the project configuration as needed. Update the environment variables in the `.env` file and modify any other configuration files to suit your project requirements.
+
+That's it! You now have a new Express project set up based on this template. Customize the project code, routes, and other components to fit your specific application needs.
+
+### Development
+
+Start the development server in watch mode using the following command:
+
+```shell
+yarn dev
+```
+
+The server address will be displayed as http://0.0.0.0:3000 (or the PORT you specified in the `.env` file).
+
+### Build and Production
+
+When you are ready to deploy your application, build the project using the following command:
+
+```shell
+yarn build
+```
+
+Start the built app in production mode using the following command:
+
+```shell
+yarn start
+```
 
 ### Tests
 
 - Run tests using `yarn test`
-
-### Running in dev mode
-
-- Run `yarn dev` to start nodemon with ts-node
-- The server address will be displayed to you as `http://0.0.0.0:3000` (or `PORT` you specified in `.env`)
-
-### Building the project and run it
-
-- Run `yarn build` to generated all JavaScript files from the TypeScript sources
-- To start the builded app located in `dist` use `yarn start`
 
 ## ❯ Table of Contents
 
@@ -44,10 +76,9 @@
   - [Database and ORM](#database-and-orm)
   - [Authentication](#authentication)
   - [Authorization](#authorization)
-  - [Custom Error](#custom-error)
+  - [Validation and Custom Error Handling](#validation-and-custom-error-handling)
   - [Logging](#logging)
   - [Security](#security)
-  - [Validation](#validation)
   - [Email Service](#email-service)
   - [Message Queue](#message-queue)
   - [Notification Service](#notification-service)
@@ -99,17 +130,7 @@ Note that ESLint is also integrated with Prettier to ensure consistent code styl
 
 Code formatting is done using [Prettier](https://prettier.io/), an opinionated code formatter.
 
-In this app, Prettier is configured with the following settings in the `.prettierrc` file:
-
-```json
-{
-  "printWidth": 100,
-  "singleQuote": true,
-  "trailingComma": "all",
-  "arrowParens": "always",
-  "endOfLine": "auto"
-}
-```
+In this app, Prettier is configured in the `.prettierrc` file.
 
 To format your codebase, run the following command:
 
@@ -117,13 +138,20 @@ To format your codebase, run the following command:
 yarn format
 ```
 
-This will automatically format all the files in your project according to the Prettier configuration.
-
-To customize the Prettier configuration, you can modify the `.prettierrc` file.
-
 To ignore certain files or directories from being formatted by Prettier, add them to the `.prettierignore` file.
 
-Feel free to adjust the content or formatting according to your preferences.
+We also utilize `EditorConfig`, which helps configure and enforce coding conventions across various editors and IDEs.
+
+#### EditorConfig Setup
+
+1. Install an EditorConfig plugin or extension for your preferred editor/IDE. The following are some popular options:
+
+   - Visual Studio Code: [EditorConfig for VS Code](https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig)
+   - IntelliJ IDEA: [EditorConfig plugin](https://plugins.jetbrains.com/plugin/7294-editorconfig)
+   - Sublime Text: [EditorConfig](https://packagecontrol.io/packages/EditorConfig)
+   - Atom: [EditorConfig](https://atom.io/packages/editorconfig)
+
+2. Once installed, ensure that your editor/IDE automatically detects and applies the project's `.editorconfig` settings.
 
 ### Git Hooks with Husky
 
@@ -277,104 +305,229 @@ Integrates OpenAPI to generate comprehensive API documentation for your endpoint
 
 These sections provide guidelines and recommendations that are not directly implemented in the code, but we provide guidance on how to approach them:
 
+## ❯ Recommendations
+
+These sections provide guidelines and recommendations that are not directly implemented in the code, but we provide guidance on how to approach them:
+
 ### Architecture
 
 Choose from different architectural patterns such as MVC, MVVC, CQRS, or Microservices based on your project requirements.
 
 #### MVC
 
+The MVC (Model-View-Controller) architectural pattern separates an application into three main components: the model, the view, and the controller. The model represents the data and business logic, the view represents the presentation layer, and the controller handles the communication between the model and the view.
+
+To implement MVC in your project, you can organize your codebase as follows:
+
+- `src/models/`: Contains the model classes and interfaces.
+- `src/views/`: Contains the view templates or components.
+- `src/controllers/`: Contains the controller logic that handles requests, manipulates data from models, and renders views.
+
 #### MVVC
+
+The MVVC (Model-View-ViewModel-Controller) architectural pattern is an extension of the MVC pattern. It introduces a ViewModel layer that acts as an intermediary between the model and the view. The ViewModel encapsulates the presentation logic and provides data binding capabilities between the model and the view.
+
+To implement MVVC in your project, you can organize your codebase as follows:
+
+- `src/models/`: Contains the model classes and interfaces.
+- `src/views/`: Contains the view templates or components.
+- `src/viewmodels/`: Contains the ViewModel classes that encapsulate the presentation logic and handle data transformations.
+- `src/controllers/`: Contains the controller logic that handles requests, communicates with the ViewModel, and renders views.
 
 #### CQRS
 
+The CQRS (Command Query Responsibility Segregation) architectural pattern separates the read and write operations in an application. It uses separate models and mechanisms for querying data (reads) and modifying data (writes).
+
+To implement CQRS in your project, you can organize your codebase as follows:
+
+- `src/queries/`: Contains the query handlers that handle read operations and retrieve data.
+- `src/commands/`: Contains the command handlers that handle write operations and modify data.
+- `src/models/`: Contains the model classes and interfaces shared between queries and commands.
+
 #### Microservices
+
+The microservices architecture is an architectural style where an application is composed of loosely coupled, independently deployable services. Each service represents a specific business capability and can be developed, deployed, and scaled independently.
+
+To implement a microservices architecture in your project, you can organize your codebase by service boundaries:
+
+- `service1/`: Contains the code for Service 1, including its own models, controllers, and routes.
+- `service2/`: Contains the code for Service 2, including its own models, controllers, and routes.
+- ...
+
+Each service can have its own folder structure based on the chosen architectural pattern, such as MVC, MVVC, or CQRS.
+
+## ❯ Recommendations
+
+These sections provide guidelines and recommendations that are not directly implemented in the code, but we provide guidance on how to approach them:
 
 ### Project Structure
 
-Set up a well-organized project structure that promotes scalability and maintainability.
+Set up a well-organized project structure that promotes scalability and maintainability. Here's an example of a common project structure:
 
-[Describe the project structure and directory layout]
+- `src/`: Contains the source code of your Express TypeScript application.
+  - `controllers/`: Contains the controller logic that handles requests and communicates with services.
+  - `routes/`: Contains the route definitions that map HTTP endpoints to controllers.
+  - `models/`: Contains the model classes or interfaces that represent your data structures.
+  - `services/`: Contains the business logic and interacts with models or external services.
+  - `middlewares/`: Contains custom middleware functions for handling specific request processing tasks.
+  - `config/`: Contains configuration files for environment-specific settings.
+  - `utils/`: Contains utility functions or modules.
+  - `app.ts`: The entry point of your application where you set up the Express server and middleware.
+  - `index.ts`: The main file that starts the server and listens for incoming requests.
+
+Feel free to adjust and customize this structure based on your project's needs and preferences.
 
 ### Database and ORM
 
-Connect to your preferred database (SQL or NoSQL) and integrate with an ORM for efficient data handling.
+Connect to your preferred database (SQL or NoSQL) and integrate with an ORM for efficient data handling. Here are a few popular options:
 
-[Specify the type of database used (SQL or NoSQL) and any relevant details]
+- **[PostgreSQL](https://www.postgresql.org/)**: A powerful open-source SQL database. You can integrate it with ORMs like [TypeORM](https://typeorm.io/) or [Sequelize](https://sequelize.org/).
 
-[Specify the ORM used for database integration]
+- **[MongoDB](https://www.mongodb.com/)**: A flexible and scalable NoSQL database. You can use an ORM like [Mongoose](https://mongoosejs.com/) to interact with MongoDB.
+
+- **[MySQL](https://www.mysql.com/)**: An open-source relational database. ORMs like [TypeORM](https://typeorm.io/) or [Sequelize](https://sequelize.org/) support MySQL.
+
+- **[SQLite](https://www.sqlite.org/)**: A self-contained, serverless, and file-based SQL database. ORMs like [TypeORM](https://typeorm.io/) and [Sequelize](https://sequelize.org/) can work with SQLite.
+
+Choose the database and ORM that best suits your project's requirements, considering factors such as data structure, scalability, performance, and ease of use.
+
+Please note that the above suggestions are just examples, and there are many other databases and ORMs available. Choose the one that aligns with your project's needs and your familiarity with the technology.
+
+Remember to install the required dependencies for your chosen database and ORM and configure the database connection details in your project.
 
 ### Authentication
 
-Implement authentication in your application using strategies like JWT, session-based authentication, or OAuth.
+Implement authentication in your application using strategies like JWT (JSON Web Tokens), session-based authentication, or OAuth. Here are a few popular choices:
 
-[Describe the authentication mechanism used]
+- **[Passport.js](http://www.passportjs.org/)**: A versatile authentication middleware for Node.js that supports various authentication strategies, including JWT, session-based authentication, OAuth, and more.
+
+- **[jsonwebtoken](https://www.npmjs.com/package/jsonwebtoken)**: A library for generating and validating JWTs in Node.js applications.
+
+- **[express-session](https://www.npmjs.com/package/express-session)**: A middleware for managing session-based authentication in Express applications.
+
+Choose the authentication strategy that best suits your project's requirements, considering factors such as security, scalability, and ease of implementation.
 
 ### Authorization
 
-Implement authorization mechanisms such as role-based access control (RBAC) or attribute-based access control (ABAC) to manage user permissions and access levels.
+Implement authorization mechanisms such as role-based access control (RBAC) or attribute-based access control (ABAC) to manage user permissions and access levels. Here are a few popular choices:
 
-[Describe the authorization mechanism used]
+- **[CASL](https://casl.js.org/)**: A library for defining and managing user permissions using an attribute-based access control approach.
 
-### Custom Error
+- **[Access Control](https://www.npmjs.com/package/accesscontrol)**: A library for implementing role-based access control (RBAC) in Node.js applications.
 
-Implement a standardized error handling system to provide meaningful and consistent error responses.
+- **[Node ACL](https://www.npmjs.com/package/acl)**: A flexible and powerful library for managing access control lists (ACL) in Node.js applications.
 
-[Explain how custom errors are handled]
+Choose the authorization mechanism that aligns with your project's requirements and provides the necessary flexibility and control over user permissions.
+
+Please note that the above suggestions are just examples, and there are many other libraries and frameworks available for authentication and authorization in Node.js. Choose the ones that best suit your project's needs and your familiarity with the technology.
+
+### Validation and Custom Error Handling
+
+Implement a robust input validation system and a standardized error handling system to provide meaningful and consistent error responses.
+
+#### Validation
+
+- Utilize a validation library like [Joi](https://github.com/sideway/joi), [Yup](https://github.com/jquense/yup), or [Zod](https://github.com/colinhacks/zod).
+- Define validation schemas or rules to validate user input.
+- Check for correct data types, required fields, and other constraints.
+- Sanitize user input to prevent common security issues like XSS attacks.
+
+#### Custom Error Handling
+
+- Implement a standardized error handling system.
+- Create custom error classes or use libraries like [Boom](https://github.com/hapijs/boom).
+- Generate structured and informative error responses.
+- Include specific error codes, messages, and additional data in error responses.
+- Centralize error handling logic for consistent error reporting.
+
+By combining validation and custom error handling, you can ensure that incoming data is validated and sanitized correctly and that any errors are handled and reported in a consistent and user-friendly manner.
 
 ### Logging
 
-Configure logging using libraries like Winston or Bunyan to capture relevant application logs.
+Configure logging to capture relevant application logs. Here are a few popular choices:
 
-[Describe the logging setup and configuration]
+- **[Winston](https://github.com/winstonjs/winston)**: A versatile logging library for Node.js that supports various logging transports, log levels, and formatting options.
+
+- **[Bunyan](https://github.com/trentm/node-bunyan)**: A simple and fast logging library with a focus on structured logging.
+
+- **[Pino](https://github.com/pinojs/pino)**: An extremely fast and lightweight logger for Node.js that provides a well-defined JSON output.
+
+Choose the logging library that best fits your project's requirements, considering factors such as performance, ease of use, and the ability to integrate with other tools or services for log aggregation and analysis.
+
+Please note that the above suggestions are just examples, and there are many other logging libraries available for Node.js. Choose the one that aligns with your project's needs and your familiarity with the technology.
 
 ### Security
 
-Enhance the security of your application using Helmet middleware to set various HTTP headers.
-
-[Explain the security measures taken (e.g., Helmet)]
-
-### Validation
-
-Utilize a validation library like Zod to validate and sanitize user input.
-
-[Specify the validation library used (e.g., Zod)]
+Enhance the security of your application using [Helmet](https://helmetjs.github.io/) middleware to set various HTTP headers. Helmet helps protect your application against common security vulnerabilities by configuring HTTP headers appropriately. It provides middleware functions that can be easily integrated into your Express application to set headers such as Content Security Policy (CSP), Strict-Transport-Security (HSTS), XSS Protection, and more. By enabling and configuring these headers, you can strengthen the security of your application and protect it from potential attacks.
 
 ### Email Service
 
-Integrate an email service to send transactional emails or notifications.
+Integrate an email service to send transactional emails or notifications. There are several popular email service providers that offer APIs for sending emails reliably and efficiently. Some commonly used providers include:
 
-[Explain the integration of the email service]
+- **[SendGrid](https://sendgrid.com/)**: A cloud-based email service that allows you to send emails at scale and provides features such as email templates, tracking, and analytics.
+
+- **[Mailgun](https://www.mailgun.com/)**: An email automation service that offers a powerful API for sending, receiving, and tracking emails.
+
+- **SMTP services**: You can also integrate your application with a standard SMTP (Simple Mail Transfer Protocol) server or a third-party SMTP service like Gmail, Outlook, or Amazon SES.
+
+To integrate an email service into your application, you will typically need to sign up for an account with the chosen provider, obtain the necessary credentials (API keys or SMTP credentials), and use their provided libraries or APIs to send emails from your application. You can usually find documentation and code examples on the email service provider's website to help you get started with the integration.
+
+Remember to handle email sending asynchronously to prevent blocking the main application flow and to handle any potential errors or failures gracefully.
 
 ### Message Queue
 
-Set up a message queue or message broker for asynchronous communication.
+Set up a message queue or message broker for asynchronous communication. Asynchronous communication is essential for decoupling components and handling background tasks efficiently. Here are a few popular message queue systems:
 
-[Describe the message queue or message broker used]
+- **[RabbitMQ](https://www.rabbitmq.com/)**: A robust and highly reliable message broker that supports multiple messaging patterns such as publish/subscribe and request/reply.
+
+- **[Apache Kafka](https://kafka.apache.org/)**: A distributed streaming platform that provides a fast, scalable, and fault-tolerant messaging system.
+
+- **Redis Pub/Sub**: Redis, an in-memory data store, also provides a simple publish/subscribe messaging mechanism for lightweight message queuing.
+
+Choose a message queue system that fits your project's requirements in terms of scalability, reliability, and ease of integration. Configure your application to use the message queue for asynchronous processing of tasks and communication between different components.
 
 ### Notification Service
 
-Implement a notification service to send real-time notifications to users.
+Implement a notification service to send real-time notifications to users. Real-time notifications can enhance the user experience and keep users informed about important updates or events. Here are a few approaches for implementing a notification service:
 
-[Explain the integration of the notification service]
+- **WebSocket**: Use WebSocket technology to establish a persistent connection between the client and the server, enabling real-time bidirectional communication for instant notifications.
+
+- **Push Notifications**: Utilize push notification services like Firebase Cloud Messaging (FCM) or Apple Push Notification Service (APNS) to send notifications to mobile devices even when the application is not actively running.
+
+- **Email/SMS**: Integrate with an email or SMS service provider to send notifications via email or SMS messages.
+
+Choose the appropriate notification approach based on your project's requirements and the platforms/devices you are targeting.
 
 ### Runtime
 
-Choose the appropriate runtime environment for your application (e.g., Node.js, ES).
+Choose the appropriate runtime environment for your application, such as Node.js or a specific version of ECMAScript (ES). Consider the following factors:
 
-[Specify the runtime environment used (e.g., Node.js, ES, bun)]
+- **[Node.js](https://nodejs.org/)**: Use Node.js if you need to build server-side applications with JavaScript. Node.js provides an event-driven, non-blocking I/O model that makes it suitable for building scalable and high-performance applications.
+
+- **ES Version**: Choose the appropriate version of ECMAScript (ES) based on your target environment. Consider the features and compatibility with the runtime environment and the browsers or platforms your application will run on.
+
+Selecting the right runtime environment ensures compatibility and performance for your application.
 
 ### Hosting
 
-Consider hosting options like Kubernetes (K8s), Amazon ECS, or Google App Engine based on your infrastructure needs.
+Consider hosting options like Kubernetes (K8s), Amazon ECS, or Google App Engine based on your infrastructure needs. The hosting environment you choose depends on factors such as scalability, ease of deployment, and management capabilities. Here are brief descriptions of the recommended hosting options:
 
-[Describe the recommended hosting environment (e.g., K8s, ECS, AppEngine)]
+- **[Kubernetes (K8s)](https://kubernetes.io/)**: A container orchestration platform that provides automated deployment, scaling, and management of containerized applications. It offers flexibility, scalability, and robustness for running your application in a distributed environment.
+
+- **[Amazon ECS](https://aws.amazon.com/ecs/)**: A fully managed container orchestration service provided by Amazon Web Services (AWS). ECS allows you to run containerized applications on a scalable infrastructure without the need to manage the underlying infrastructure.
+
+- **[Google App Engine](https://cloud.google.com/appengine)**: A fully managed serverless platform provided by Google Cloud Platform (GCP). App Engine allows you to focus on writing code without worrying about infrastructure management. It scales automatically to handle your application's traffic.
+
+Choose the hosting environment that best fits your project's requirements in terms of scalability, management, and integration with your infrastructure.
 
 ### Infrastructure as Code (IAC)
 
-Include IaC code, Helm charts, or Kubernetes (K8s) configuration if applicable.
+Include IaC code, Helm charts, or Kubernetes (K8s) configuration if applicable. Infrastructure as Code (IaC) allows you to manage and provision your infrastructure using code, enabling version control, repeatability, and automated deployments. Here are some elements you may consider:
 
-[Specify the infrastructure-as-code (IaC) code used, if applicable]
+- **IaC Code**: If you are using a cloud provider like [AWS](https://aws.amazon.com/), [Azure](https://azure.microsoft.com/), or [GCP](https://cloud.google.com/), consider including infrastructure provisioning code using tools like [Terraform](https://www.terraform.io/) or [AWS CloudFormation](https://aws.amazon.com/cloudformation/).
 
-[Explain the Helm chart configuration, if applicable]
+- **Helm Charts**: If you are deploying your application on Kubernetes, Helm charts provide a way to define, install, and manage applications within a Kubernetes cluster. Include the necessary Helm charts and values files in your repository for easier deployment and configuration.
 
-[Describe any Kubernetes (K8s) code used, if applicable]
+- **Kubernetes (K8s) Configuration**: If you are deploying directly to a Kubernetes cluster, include the necessary Kubernetes manifests, such as Deployment, Service, and Ingress files, to define and configure your application's components within the cluster.
+
+By including IaC code, Helm charts, or Kubernetes configuration, you enable infrastructure provisioning and deployment automation, making it easier to manage and scale your application.
