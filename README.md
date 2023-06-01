@@ -2,31 +2,29 @@
 
 `nodejs-express-template` is a template project for building Node.js and Express.js applications. It provides a solid foundation and integrates popular technologies, libraries, and frameworks to streamline your development process.
 
-## ❯ Getting Started
+## Getting Started
 
-To create a new Express project using this template, follow these steps:
+To create a new project based on this template, follow these steps:
 
-1. Clone this repository to your local machine using the following command:
+1. **Use this template**: Click on the "Use this template" button at the top of the repository to create a new repository based on this template.
+
+2. **Clone the new repository**: Clone the newly created repository to your local machine using the following command:
+   ```shell
+   git clone <new-repository-url>
+   ```
+3. **Create `.env` file**: Rename `.env.example` to `.env`. They come with these default values:
 
    ```shell
-   git clone <repository-url>
+   PORT=3000
+   REDIS_URL=redis://localhost:6379
    ```
 
-2. Rename the cloned repository to your desired project name:
-   ```shell
-   mv <template-project-name> <your-project-name>
-   ```
-3. Navigate to the project directory:
-   ```shell
-   cd <new-project-name>
-   ```
-4. Install all project dependencies using the following command:
+4. **Install project dependencies**: Install all project dependencies using the following command:
    ```shell
    yarn install
    ```
-5. Customize the project configuration as needed. Update the environment variables in the `.env` file and modify any other configuration files to suit your project requirements.
 
-That's it! You now have a new Express project set up based on this template. Customize the project code, routes, and other components to fit your specific application needs.
+You are now ready to start developing your project!
 
 ### Development
 
@@ -168,13 +166,6 @@ For more information on Husky and how to customize Git hooks using the `.husky` 
 ### Environment Variables
 
 Configures environment variables using `dotenv` for easy management of configuration settings.
-
-The environment variables can be found and modified in the `.env` file. They come with these default values:
-
-```bash
-PORT=3000
-REDIS_URL=redis://localhost:6379
-```
 
 ### Docker
 
