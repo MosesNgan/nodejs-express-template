@@ -1,6 +1,13 @@
-# nodejs-express-template
+# Express TypeScript Template
 
-`nodejs-express-template` is a template project for building Node.js and Express.js applications. It provides a solid foundation and integrates popular technologies, libraries, and frameworks to streamline your development process.
+This is a template repository for building Express.js with TypeScript applications. There are two main sections.
+  1. The first part consists of pre-implemented features and recommended technologies/packages that we propose for every Express project.
+  2. The second part offers recommendations (but no implementation) on various topics that may differ from project to project.
+
+Check the [table of contents](#-table-of-contents) for more details.
+
+
+The goal is to enable our software engineers to **focus more on the business domain** rather than spending excessive time on setting up the development environment.
 
 ## Getting Started
 
@@ -83,6 +90,7 @@ yarn start
   - [Runtime](#runtime)
   - [Hosting](#hosting)
   - [Infrastructure as Code (IAC)](#infrastructure-as-code-iac)
+- [Feedback and Suggestions](#feedback-and-suggestions)
 
 ## ❯ Features
 
@@ -291,10 +299,6 @@ Utilizes Jest as the testing framework to ensure code quality and reliability th
 ### API Documentation
 
 Integrates OpenAPI to generate comprehensive API documentation for your endpoints.
-
-## ❯ Recommendations
-
-These sections provide guidelines and recommendations that are not directly implemented in the code, but we provide guidance on how to approach them:
 
 ## ❯ Recommendations
 
@@ -522,3 +526,18 @@ Include IaC code, Helm charts, or Kubernetes (K8s) configuration if applicable. 
 - **Kubernetes (K8s) Configuration**: If you are deploying directly to a Kubernetes cluster, include the necessary Kubernetes manifests, such as Deployment, Service, and Ingress files, to define and configure your application's components within the cluster.
 
 By including IaC code, Helm charts, or Kubernetes configuration, you enable infrastructure provisioning and deployment automation, making it easier to manage and scale your application.
+
+
+## Feedback and Suggestions
+
+If you have any ideas for improvements, feature requests, or general comments, we encourage you to use GitHub Issues to share your thoughts.
+
+To submit feedback or suggestions:
+1. Navigate to the [Issues](https://github.com/palo-it-hk/express-typescript-template/issues) tab of this repository.
+2. Click on the "New Issue" button.
+3. Provide a descriptive title for your feedback or suggestion.
+4. Write a detailed description explaining your idea or comment. Feel free to include any relevant context or examples.
+5. Click on the "Submit new issue" button once you have completed the issue.
+
+
+Thank you for your participation and valuable input!
